@@ -11,13 +11,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180617070929) do
+ActiveRecord::Schema.define(version: 20180617211629) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "prices", force: :cascade do |t|
+    t.decimal  "buy"
+    t.decimal  "sale"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "prices", ["product_id"], name: "index_prices_on_product_id"
+
+  create_table "product_sales", force: :cascade do |t|
+    t.integer  "quantity"
+    t.integer  "product_id"
+    t.integer  "sale_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "product_sales", ["product_id"], name: "index_product_sales_on_product_id"
+  add_index "product_sales", ["sale_id"], name: "index_product_sales_on_sale_id"
 
   create_table "products", force: :cascade do |t|
     t.string   "name"
@@ -28,6 +49,26 @@ ActiveRecord::Schema.define(version: 20180617070929) do
   end
 
   add_index "products", ["category_id"], name: "index_products_on_category_id"
+
+  create_table "sales", force: :cascade do |t|
+    t.decimal  "tax"
+    t.decimal  "delivery"
+    t.decimal  "total"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sales", ["user_id"], name: "index_sales_on_user_id"
+
+  create_table "stocks", force: :cascade do |t|
+    t.integer  "available"
+    t.integer  "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "stocks", ["product_id"], name: "index_stocks_on_product_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

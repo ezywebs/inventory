@@ -1,3 +1,27 @@
-<h1>Welcome to the inventory app</h1>
+<h1>Inventory app</h1>
 
-<%= link_to "logout", destroy_user_session_path, method: :delete %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>SKU</th>
+      <th>In Stock</th>
+      <th>Category</th>
+      <th>Buy Price</th>
+      <th>Sale Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inventory.each do |i| %>
+      <tr>
+        <td><%= i.product.name %></td>
+        <td><%= i.product.sku %></td>
+        <td><%= i.available %></td>
+        <td><%= i.product.category.name %></td>
+        
+        <td><%= i.product.price.buy %></td>
+        <td><%= i.product.price.sale %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

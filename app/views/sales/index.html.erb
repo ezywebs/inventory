@@ -1,0 +1,28 @@
+<h1>Sales</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Sale Date</th>
+      <th>Products</th>
+      <th>Tax Collected</th>
+      <th>Delivery Charge</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sales.each do |sale| %>
+      <tr>
+        <td><%= sale.created_at %></td>
+        <td>
+          <% sale.products.each do |product| %>
+           <%= "#{product.name} " %>
+          <% end %>
+        </td>
+        <td><%= sale.tax %></td>
+        <td><%= sale.delivery %></td>
+        <td><%= sale.total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tax: 9.99
+  delivery: 9.99
+  total: 9.99
+  user_id: 
+
+two:
+  tax: 9.99
+  delivery: 9.99
+  total: 9.99
+  user_id: 
