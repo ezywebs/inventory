@@ -1,0 +1,31 @@
+<div class="row" id="categories">
+    <% if params[:action].eql?('create') %>
+      <%= bootstrap_flash %>
+    <% end %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th width="70"></th>
+        <th width="70"></th>
+        <th width="70"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each do |category| %>
+        <tr>
+          <td><%= link_to category.name, edit_category_path(category) %></td>
+          <td>
+            <%= button_tag(type: :submit, class: "btn btn-sm btn-success", name: "edits") do %>
+              <i class="fa fa-edit"></i> Edit
+            <% end %>
+          </td>
+          <td><%= link_to "Edit", edit_category_path(category), 
+                                      class:"btn btn-sm btn-success", remote: true, name: "edits" %></td>
+          <td><%= link_to "Delete", category_path(category), method: :delete, 
+                                      data: {confirm: "Are you sure?"}, class:"btn btn-sm btn-danger del-btn", remote: true, data: { "disable-with": "Deleting..." } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

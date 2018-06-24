@@ -1,0 +1,10 @@
+<td><%= link_to @category.name, edit_category_path(@category) %></td>
+<td>
+  <%= button_tag(type: :submit, class: "btn btn-sm btn-success", name: "edits") do %>
+    <i class="fa fa-edit"></i> Edit
+  <% end %>
+</td>
+<td><%= link_to "Edit", edit_category_path(@category), 
+                            class:"btn btn-sm btn-success", remote: true, name: "edits" %></td>
+<td><%= link_to "Delete", category_path(@category), method: :delete, 
+                            class:"btn btn-sm btn-danger del-btn", remote: true, data: { "disable-with": "Deleting..." } %></td>

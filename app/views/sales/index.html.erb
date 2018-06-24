@@ -15,8 +15,8 @@
       <tr>
         <td><%= sale.created_at %></td>
         <td>
-          <% sale.products.each do |product| %>
-           <%= "#{product.name} " %>
+          <% sale.product_sales.each do |ps| %>
+           <%= "#{ps.product.name}: #{ps.quantity}" %>
           <% end %>
         </td>
         <td><%= sale.tax %></td>

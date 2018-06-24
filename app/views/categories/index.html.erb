@@ -1,32 +1,9 @@
 <h1>List of all categories</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @categories.each do |category| %>
-      <tr>
-        <td><%= category.name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= form_for(@new_category, :html => {class: "form-horizontal", role: "form"}) do |f| %>
-<%#= form_tag new_category_path, remote: true, method: :get, id: "stock-lookup-form" do %>
-<%#= form_tag new_category_path, method: :get, id: "new-category-form" do %>
-  <div class="container">
-    <div class="col-md-6">
-      <%= f.text_field :name, class: " form-control", placeholder: "Category name", autofocus: true %>
-    </div>
-    <%= f.submit "New Category", class: 'btn btn-primary' %>
-  </div>
-<% end %>
+<%= render 'categories/list' %>
 
 <div id="new-category">
-  <%= form_tag categories_path, method: :post, id: "new-category-form" do %>
+  <%= form_tag categories_path, remote: true, method: :post, id: "new-category-form" do %>
     <div class="form-group row no-padding text-center col-md-12">
       <div class="col-md-10">
         <%= text_field_tag :name, params[:name], 

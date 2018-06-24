@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
 
-  resources :categories, except: [:destroy]
+  resources :categories
   resources :products, except: [:destroy]
   resources :stocks, except: [:destroy]
   resources :prices, except: [:destroy]

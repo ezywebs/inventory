@@ -1,0 +1,18 @@
+<td>
+  <div>
+    <%= form_tag category_path, remote: true, method: :put, name: "editform" do %>
+      <div class="form-group row text-center col-md-12">
+        <div class="col-md-10">
+          <%= text_field_tag :editname, @category.name, 
+                                    placeholder: "Category Name", autofocus: true,
+                                    class: "form-control", id: "edit-name" %>
+        </div>
+        <div class="col-md-2">
+          <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+            Save
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</td>
