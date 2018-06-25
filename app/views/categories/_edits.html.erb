@@ -1,7 +1,7 @@
-<td>
+<td colspan="3">
   <div>
     <%= form_tag category_path, remote: true, method: :put, name: "editform" do %>
-      <div class="form-group row text-center col-md-12">
+      <div class="form-group row text-center col-md-12 no-margin-bot">
         <div class="col-md-10">
           <%= text_field_tag :editname, @category.name, 
                                     placeholder: "Category Name", autofocus: true,

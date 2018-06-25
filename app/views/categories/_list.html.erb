@@ -8,22 +8,12 @@
         <th>Name</th>
         <th width="70"></th>
         <th width="70"></th>
-        <th width="70"></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="categories-body">
       <% @categories.each do |category| %>
         <tr>
-          <td><%= link_to category.name, edit_category_path(category) %></td>
-          <td>
-            <%= button_tag(type: :submit, class: "btn btn-sm btn-success", name: "edits") do %>
-              <i class="fa fa-edit"></i> Edit
-            <% end %>
-          </td>
-          <td><%= link_to "Edit", edit_category_path(category), 
-                                      class:"btn btn-sm btn-success", remote: true, name: "edits" %></td>
-          <td><%= link_to "Delete", category_path(category), method: :delete, 
-                                      data: {confirm: "Are you sure?"}, class:"btn btn-sm btn-danger del-btn", remote: true, data: { "disable-with": "Deleting..." } %></td>
+          <%= render partial: "categories/category", locals: {category: category} %>
         </tr>
       <% end %>
     </tbody>

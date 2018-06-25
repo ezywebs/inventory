@@ -22,8 +22,9 @@ class CategoriesController < ApplicationController
     else
       flash.now[:danger] = "There was an error please try again!"
     end
-    @categories = Category.all
-    render partial: 'categories/list'
+    # @categories = Category.all
+    # render partial: 'categories/list'
+    render @category
   end
   
   def update

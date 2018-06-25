@@ -16,71 +16,35 @@
 //= require turbolinks
 //= require_tree .
 
-// $(document).ready(function(){
-//   $('#new-category-form').on('ajax:complete', function(event, data, status){
-//     $('#name').val('');
-//     $('#categories').html(data.responseText);
-//   })
-// })
+var flag = true;
 
-// $(document).ready(function(){
-//   $('form[name="edit-form"]').on('ajax:success', function(event, data, status){
-//     $(this).closest('tr').html(data.responseText);
-//   });
-// })
-
-// $(document).ready(function(){
-//   $("[name='edits']").on('ajax:complete', function(event, data, status) {
-//     $(this).closest('tr').html(data.responseText)
-//   });
-// })
-
-
-
-  
 $(document).on("turbolinks:load", function() {
   $('#new-category-form').on('ajax:complete', function(event, data, status){
     $('#name').val('');
-    $('#categories').html(data.responseText);
-  });
-  
-  $("[name='edits']").on('ajax:complete', function(event, data, status) {
-    $(this).closest('tr').html(data.responseText)
+    $('#categories-body').append("<tr>"+data.responseText+"</tr>");
+    _init();
   });
 
-  $('form[name="editform"]').on('ajax:complete', function(event, data, status){
+  $("[name='edits']").on('ajax:complete', function(event, data, status) {
     $(this).closest('tr').html(data.responseText);
+    $('form[name="editform"]').on('ajax:complete', function(event, data, status){
+      $(this).closest('tr').html(data.responseText);
+       _init();
+    });
   });
 })
 
-// document.addEventListener("turbolinks:load", function() {
-//   $("[name='edits']").on('ajax:complete', function(event, data, status) {
-//     $(this).closest('tr').html(data.responseText)
-//   })
-// })
+function _init(){
+  $("[name='edits']").on('ajax:complete', function(event, data, status) {
+    $(this).closest('tr').html(data.responseText);
+    $('form[name="editform"]').on('ajax:complete', function(event, data, status){
+      $(this).closest('tr').html(data.responseText);
+      if (flag) {
+        _init();
+        flag = false;
+      }
+    });
+    flag = true;
+  });
+}
 
-// $(document).on("turbolinks:load", function() {
-//   $('form[name="editform"]').on('ajax:complete', function(event, data, status){
-//     $(this).closest('tr').html(data.responseText);
-//   })
-// })
-
-
-// $('form[name="edit-form"]').on('ajax:complete', function(event, data, status){
-//   // $(this).closest('tr').html(data.responseText);
-//   $(this).closest('tr').html("Hello World!");
-// })
-
-
-
-
-
-// $(document).ready(function(){
-
-//     jQuery('#target').append('target edit 1<br>');
-
-//     jQuery('#target').append('target edit 2<br>');
-
-//     jQuery('#target').append('target edit 3<br>');
-
-// });
