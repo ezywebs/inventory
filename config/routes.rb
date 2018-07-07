@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
 
   resources :categories
-  resources :products, except: [:destroy]
+  resources :products
   resources :stocks, except: [:destroy]
   resources :prices, except: [:destroy]
   resources :sales, except: [:destroy]
   root 'welcome#index'
+  get 'categories/cancel' => 'categories#cancel'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

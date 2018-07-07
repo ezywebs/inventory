@@ -22,8 +22,6 @@ class CategoriesController < ApplicationController
     else
       flash.now[:danger] = "There was an error please try again!"
     end
-    # @categories = Category.all
-    # render partial: 'categories/list'
     render @category
   end
   
@@ -43,6 +41,10 @@ class CategoriesController < ApplicationController
       flash[:danger] = "There was an error please try again!"
     end
     redirect_to categories_path
+  end
+  
+  def cancel
+    render @category
   end
 
   private

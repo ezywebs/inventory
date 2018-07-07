@@ -1,0 +1,26 @@
+<div class="col-md-8 hidden" id="flash_hook"></div>
+<div id="new-form-wrap">
+  <%= form_tag products_path, remote: true, method: :post, id: "new-form" do %>
+    <div class="form-group row no-padding text-center col-md-12">
+      <h2>Add New Product</h2>
+      <div class="col-md-4">
+        <%= text_field_tag :name, params[:name], 
+                                  placeholder: "Product Name", autofocus: true,
+                                  class: "form-control" %>
+      </div>
+      <div class="col-md-3">
+        <%= text_field_tag :sku, params[:sku], 
+                                  placeholder: "SKU", autofocus: true,
+                                  class: "form-control" %>
+      </div>
+      <div class="col-md-3">
+        <%= collection_select(:post, :category_id, Category.all, :id, :name, {:include_blank => 'Select Category'}, {:class=>'form-control'}) %>
+      </div>
+      <div class="col-md-2">
+        <%= button_tag(type: :submit, class: "btn btn-primary") do %>
+          New Product
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

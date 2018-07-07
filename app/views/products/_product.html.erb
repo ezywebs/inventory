@@ -1,0 +1,47 @@
+<td colspan="4" name="displayproduct">
+  <div class="row">
+    <div class="col-md-3">
+      <%= link_to product.name, edit_product_path(product), remote: true, 
+                                                              name: "editproduct" %>
+    </div>
+    <div class="col-md-3">
+      <%= product.sku %>
+    </div>
+    <div class="col-md-3">
+      <%= product.category.name %>
+    </div>
+    <div class="col-md-3">
+      <%= link_to "Delete", product_path(product), method: :delete, name: "deleteproduct",
+                              class:"btn btn-sm btn-danger del-btn", remote: true, 
+                              data: { disable_with: "Deleting..." } %>
+    </div>
+  </div>
+</td>               
+<td colspan="4" name="displayedit" class="hidden">
+  <div>
+    <%= form_tag product_path(product), remote: true, method: :put, name: "editform" do %>
+      <div class="form-group row text-center col-md-12 no-margin-bot">
+        <div class="col-md-3">
+          <%= text_field_tag :name, product.name, 
+                                    placeholder: "Name", autofocus: true,
+                                    class: "form-control", id: "edit-name" %>
+        </div>
+        <div class="col-md-2">
+          <%= text_field_tag :sku, product.sku, 
+                                    placeholder: "SKU", autofocus: true,
+                                    class: "form-control", id: "edit-sku" %>
+        </div>
+        <div class="col-md-3">
+          <%#= collection_select(:post, :category_id, Category.all, :id, :name, {:include_blank => 'Select Category'}, {:class=>'form-control', :selected => product.category_id.to_i}) %>
+          <%= select_tag :category_id, options_from_collection_for_select(Category.all, :id, :name, product.category_id), {:class => 'form-control'} %>
+        </div>
+        <div class="col-md-3">
+          <%= button_tag(type: :submit, class: "btn btn-sm btn-primary") do %>
+            Save
+          <% end %>
+          <%= link_to "Cancel", "#", class:"btn btn-sm btn-danger", remote: true, method: :get, name: "productcancel" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</td>

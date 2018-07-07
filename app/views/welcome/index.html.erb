@@ -19,8 +19,8 @@
         <td><%= i.available %></td>
         <td><%= i.product.category.name %></td>
         
-        <td><%= i.product.price.buy %></td>
-        <td><%= i.product.price.sale %></td>
+        <td><%= i.product.price.present? ? i.product.price.buy : "N/A" %></td>
+        <td><%= i.product.price.present? ? i.product.price.sale : "N/A" %></td>
       </tr>
     <% end %>
   </tbody>

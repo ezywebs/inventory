@@ -1,5 +1,33 @@
-<td><%= link_to category.name, edit_category_path(category) %></td>
-<td><%= link_to '<i class="fa fa-edit"></i> Edit'.html_safe, edit_category_path(category), 
-                                      class:"btn btn-sm btn-success", remote: true, name: "edits" %></td>
-<td><%= link_to "Delete", category_path(category), method: :delete, 
-                            class:"btn btn-sm btn-danger del-btn", remote: true, data: { "confirm": "Are you sure?" } %></td>
+<td name="editcategory"><%= link_to category.name, edit_category_path(category), remote: true, 
+                                                          name: "edits" %></td>
+<td name="deletecategory"><%= link_to "Delete", category_path(category), method: :delete, 
+                            class:"btn btn-sm btn-danger del-btn", remote: true, 
+                            data: { disable_with: "Deleting..." } %></td>
+
+<%#= link_to '<i class="fa fa-edit"></i> Edit'.html_safe, 
+                                      edit_category_path(category), 
+                                      class:"btn btn-sm btn-success", 
+                                      remote: true, name: "edits" %>
+                                      
+<td colspan="3" name="displayedit" class="hidden">
+  <div>
+    <%= form_tag category_path(category), remote: true, method: :put, name: "editform" do %>
+      <div class="form-group row text-center col-md-12 no-margin-bot">
+        <div class="col-md-8">
+          <%= text_field_tag :editname, category.name, 
+                                    placeholder: "Category Name", autofocus: true,
+                                    class: "form-control", id: "edit-name" %>
+        </div>
+        <div class="col-md-2">
+          <%= button_tag(type: :submit, class: "btn btn-sm btn-primary") do %>
+            Save
+          <% end %>
+          
+        </div>
+        <div class="col-md-2">
+          <%= link_to "Cancel", "#", class:"btn btn-sm btn-danger", remote: true, method: :get, name: "categorycancel" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</td>
